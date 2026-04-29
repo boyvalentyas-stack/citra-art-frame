@@ -27,6 +27,18 @@
     .lang-btn { padding: 0.35rem 0.7rem; font-size: 0.72rem; font-weight: 600; letter-spacing: 0.08em; cursor: pointer; border: none; background: transparent; color: var(--text-muted); transition: all 0.2s; font-family: 'DM Sans', sans-serif; }
     .lang-btn.active { background: var(--brown); color: white; }
     .lang-divider { width: 1px; height: 16px; background: var(--border); }
+    /* Hamburger */
+    .hamburger { display: none; flex-direction: column; justify-content: center; gap: 5px; cursor: pointer; padding: 4px; background: none; border: none; }
+    .hamburger span { display: block; width: 22px; height: 2px; background: var(--brown); border-radius: 2px; transition: all 0.3s; }
+    .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .hamburger.open span:nth-child(2) { opacity: 0; }
+    .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+    /* Mobile drawer */
+    .mobile-nav { display: none; position: fixed; top: 57px; left: 0; right: 0; background: var(--warm-white); border-bottom: 1px solid var(--border); padding: 1.25rem 1.25rem; flex-direction: column; gap: 0; z-index: 99; box-shadow: 0 8px 24px rgba(0,0,0,0.08); }
+    .mobile-nav.open { display: flex; }
+    .mobile-nav a { text-decoration: none; color: var(--text-muted); font-size: 0.95rem; font-weight: 500; padding: 0.875rem 0; border-bottom: 1px solid var(--border); transition: color 0.2s; }
+    .mobile-nav a:last-child { border-bottom: none; color: var(--gold); font-weight: 600; padding-top: 1rem; }
+    .mobile-nav a:hover { color: var(--brown); }
     .hero { min-height: 100vh; display: grid; grid-template-columns: 1fr 1fr; position: relative; padding-top: 70px; }
     .hero-left { display: flex; flex-direction: column; justify-content: center; padding: 5rem 3rem 5rem 5rem; background: var(--warm-white); position: relative; }
     .hero-left::after { content: ''; position: absolute; right: -1px; top: 10%; bottom: 10%; width: 1px; background: var(--border); }
@@ -92,16 +104,62 @@
     footer a { font-size: 0.75rem; color: var(--gold); text-decoration: none; }
     .fade-up { opacity: 0; transform: translateY(30px); transition: opacity 0.7s ease, transform 0.7s ease; }
     .fade-up.visible { opacity: 1; transform: translateY(0); }
+
+    /* ── TABLET (max 900px) ── */
     @media (max-width: 900px) {
-      .hero { grid-template-columns: 1fr; }
-      .hero-right { min-height: 350px; }
-      .hero-left { padding: 3rem 2rem; }
-      section { padding: 4rem 1.5rem; }
-      .about-grid, .location-grid, .contact-grid { grid-template-columns: 1fr; }
-      nav { padding: 1rem 1.5rem; flex-wrap: wrap; gap: 0.75rem; }
+      nav { padding: 1rem 1.5rem; }
       .nav-links { gap: 1rem; }
-      footer { flex-direction: column; gap: 0.5rem; padding: 1.5rem; }
+      .hero { grid-template-columns: 1fr; min-height: auto; }
+      .hero-left { padding: 3rem 2rem 2.5rem; }
+      .hero-left::after { display: none; }
+      .hero-right { min-height: 320px; padding: 2.5rem 1rem 3rem; }
+      .hero-frame-art { width: 240px; height: 280px; }
+      .hero-badge { width: 80px; height: 80px; bottom: 1rem; right: 1rem; }
+      .hero-badge span:first-child { font-size: 1.2rem; }
+      section { padding: 4rem 2rem; }
+      .about-grid { grid-template-columns: 1fr; gap: 4rem; }
+      .about-accent { bottom: -1rem; right: -0.5rem; font-size: 0.85rem; padding: 1rem 1.25rem; max-width: 160px; }
+      .location-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+      .contact-grid { grid-template-columns: 1fr 1fr; }
+      footer { flex-direction: column; gap: 0.5rem; padding: 1.5rem; text-align: center; }
     }
+
+    /* ── MOBILE (max 600px) ── */
+    @media (max-width: 600px) {
+      /* Nav: logo left, lang toggle right, hide nav links */
+      nav { padding: 0.875rem 1rem; flex-wrap: nowrap; }
+      .nav-right { gap: 0.75rem; }
+      .nav-links { display: none; }
+      .hamburger { display: flex; }
+      /* Hero */
+      .hero-left { padding: 2.5rem 1.25rem 2rem; }
+      .hero-title { font-size: 2.2rem; }
+      .hero-desc { font-size: 0.9rem; margin-bottom: 1.75rem; }
+      .hero-btns { flex-direction: column; gap: 0.75rem; }
+      .btn-primary, .btn-outline { text-align: center; padding: 0.875rem 1.5rem; }
+      .hero-right { min-height: 260px; }
+      .hero-frame-art { width: 180px; height: 220px; }
+      .hero-badge { width: 70px; height: 70px; bottom: 0.75rem; right: 0.75rem; }
+      .hero-badge span:first-child { font-size: 1rem; }
+      .hero-badge span:last-child { font-size: 0.5rem; }
+      /* Sections */
+      section { padding: 3rem 1.25rem; }
+      .section-title { font-size: 1.65rem; }
+      /* About */
+      .about-grid { gap: 3rem; }
+      .about-img-placeholder { aspect-ratio: 3/2; }
+      .about-accent { position: static; margin-top: 1rem; max-width: 100%; font-size: 0.85rem; }
+      .about-stats { grid-template-columns: 1fr 1fr; gap: 1rem; }
+      /* Location */
+      .map-container { height: 260px; }
+      /* Contact */
+      .contact-grid { grid-template-columns: 1fr; gap: 1rem; }
+      .contact-card { padding: 1.25rem; }
+      .contact-bottom { flex-direction: column; gap: 0.75rem; text-align: center; }
+      /* Footer */
+      footer { padding: 1.25rem 1rem; }
+    }
+  
   </style>
 </head>
 <body>
@@ -119,8 +177,18 @@
         <div class="lang-divider"></div>
         <button class="lang-btn" onclick="setLang('id')">ID</button>
       </div>
+      <button class="hamburger" id="hamburger" onclick="toggleMenu()" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
     </div>
   </nav>
+  <!-- Mobile nav drawer -->
+  <div class="mobile-nav" id="mobileNav">
+    <a href="#about" data-i18n="nav.about" onclick="toggleMenu()">About</a>
+    <a href="#location" data-i18n="nav.location" onclick="toggleMenu()">Location</a>
+    <a href="#contact" data-i18n="nav.contact" onclick="toggleMenu()">Contact</a>
+    <a href="get-yours.html" data-i18n="nav.cta">Get Yours →</a>
+  </div>
 
   <div class="hero">
     <div class="hero-left">
@@ -189,7 +257,7 @@
       </div>
       <div class="fade-up">
         <div class="map-container">
-          <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15866.385890835738!2d106.8917786004639!3d-6.184724002636502!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e69f4c2293711c9%3A0xecc184968a19da9c!2sCitra%20Art!5e0!3m2!1sen!2sid!4v1777436891463!5m2!1sen!2sid" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+          <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3966.5634097985926!2d106.89219702522907!3d-6.189129577304402!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e69f4c2293711c9%3A0xecc184968a19da9c!2sCitra%20Art!5e0!3m2!1sen!2sid!4v1777474090676!5m2!1sen!2sid" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
           <a class="map-overlay-btn" href="https://maps.google.com/?q=Jakarta" target="_blank" rel="noopener noreferrer" data-i18n="location.mapBtn">📍 Open in Google Maps</a>
         </div>
       </div>
@@ -286,6 +354,13 @@
         'footer.built':'Dibuat dengan ❤️ dari sang anak dan dihosting di GitHub Pages didukung oleh Claude.AI','footer.link':'Kalkulator Harga →',
       }
     };
+
+    function toggleMenu() {
+      const h = document.getElementById('hamburger');
+      const m = document.getElementById('mobileNav');
+      h.classList.toggle('open');
+      m.classList.toggle('open');
+    }
 
     function setLang(lang) {
       document.querySelectorAll('.lang-btn').forEach(b => b.classList.toggle('active', b.textContent.toLowerCase() === lang));
