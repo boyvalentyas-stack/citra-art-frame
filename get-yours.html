@@ -7,71 +7,50 @@
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
   <style>
     :root {
-      --cream: #F5F0E8;
-      --warm-white: #FDFAF5;
-      --gold: #C9A84C;
-      --gold-light: #E8C97A;
-      --dark: #1A1410;
-      --brown: #4A3728;
-      --brown-light: #7A5C48;
-      --text: #2C2018;
-      --text-muted: #8A7060;
-      --border: #E0D5C5;
-      --success: #2D7A4F;
+      --cream: #F5F0E8; --warm-white: #FDFAF5; --gold: #C9A84C;
+      --dark: #1A1410; --brown: #4A3728; --brown-light: #7A5C48;
+      --text: #2C2018; --text-muted: #8A7060; --border: #E0D5C5;
     }
     * { box-sizing: border-box; margin: 0; padding: 0; }
     body { background: var(--cream); font-family: 'DM Sans', sans-serif; color: var(--text); min-height: 100vh; }
-
-    /* NAV */
     nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; padding: 1.25rem 2.5rem; display: flex; justify-content: space-between; align-items: center; background: rgba(253,250,245,0.92); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); }
     .nav-logo { font-family: 'Playfair Display', serif; font-size: 1.25rem; color: var(--brown); letter-spacing: 0.02em; text-decoration: none; }
     .nav-logo span { color: var(--gold); font-style: italic; }
+    .nav-right { display: flex; gap: 1.5rem; align-items: center; }
     .nav-back { font-size: 0.875rem; color: var(--text-muted); text-decoration: none; display: flex; align-items: center; gap: 0.5rem; transition: color 0.2s; }
     .nav-back:hover { color: var(--brown); }
-
-    /* HERO STRIP */
+    .lang-toggle { display: flex; align-items: center; background: var(--cream); border: 1px solid var(--border); border-radius: 2px; overflow: hidden; }
+    .lang-btn { padding: 0.35rem 0.7rem; font-size: 0.72rem; font-weight: 600; letter-spacing: 0.08em; cursor: pointer; border: none; background: transparent; color: var(--text-muted); transition: all 0.2s; font-family: 'DM Sans', sans-serif; }
+    .lang-btn.active { background: var(--brown); color: white; }
+    .lang-divider { width: 1px; height: 16px; background: var(--border); }
     .page-hero { background: var(--dark); color: white; padding: 7rem 5rem 4rem; position: relative; overflow: hidden; }
     .page-hero::before { content: ''; position: absolute; top: -50%; right: -10%; width: 500px; height: 500px; border-radius: 50%; border: 1px solid rgba(201,168,76,0.15); }
-    .page-hero::after { content: ''; position: absolute; top: -30%; right: 5%; width: 300px; height: 300px; border-radius: 50%; border: 1px solid rgba(201,168,76,0.08); }
     .hero-tag { font-size: 0.7rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--gold); margin-bottom: 1rem; display: flex; align-items: center; gap: 0.75rem; }
     .hero-tag::before { content: ''; width: 2rem; height: 1px; background: var(--gold); }
     .page-hero h1 { font-family: 'Playfair Display', serif; font-size: clamp(2rem, 4vw, 3rem); line-height: 1.15; margin-bottom: 0.75rem; }
     .page-hero h1 em { color: var(--gold); font-style: italic; }
     .page-hero p { color: rgba(255,255,255,0.5); font-size: 0.95rem; font-weight: 300; max-width: 480px; line-height: 1.6; }
-
-    /* MAIN LAYOUT */
     .main { max-width: 1100px; margin: 0 auto; padding: 3rem 2rem 5rem; display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 2.5rem; align-items: start; }
-
-    /* FORM CARD */
     .form-card { background: white; border: 1px solid var(--border); padding: 2.5rem; }
     .form-card h2 { font-family: 'Playfair Display', serif; font-size: 1.4rem; color: var(--dark); margin-bottom: 0.25rem; }
     .form-card .subtitle { font-size: 0.85rem; color: var(--text-muted); margin-bottom: 2rem; font-weight: 300; }
-
     .field { margin-bottom: 1.75rem; }
     .field label { display: block; font-size: 0.78rem; font-weight: 500; text-transform: uppercase; letter-spacing: 0.08em; color: var(--brown-light); margin-bottom: 0.5rem; }
-    .field input[type="text"],
-    .field input[type="number"] { width: 100%; padding: 0.8rem 1rem; border: 1px solid var(--border); background: var(--warm-white); font-family: 'DM Sans', sans-serif; font-size: 0.95rem; color: var(--text); outline: none; border-radius: 2px; transition: border-color 0.2s; -moz-appearance: textfield; }
-    .field input::-webkit-outer-spin-button,
-    .field input::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
+    .field input[type="text"], .field input[type="number"] { width: 100%; padding: 0.8rem 1rem; border: 1px solid var(--border); background: var(--warm-white); font-family: 'DM Sans', sans-serif; font-size: 0.95rem; color: var(--text); outline: none; border-radius: 2px; transition: border-color 0.2s; -moz-appearance: textfield; }
+    .field input::-webkit-outer-spin-button, .field input::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
     .field input:focus { border-color: var(--gold); }
-    .field input.error { border-color: #c0392b; }
-
     .size-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+    .size-sub-label { font-size: 0.75rem; color: var(--text-muted); margin-bottom: 0.35rem; }
     .size-input-wrap { position: relative; }
     .size-input-wrap input { padding-right: 2.5rem; }
     .size-unit { position: absolute; right: 0.75rem; top: 50%; transform: translateY(-50%); font-size: 0.75rem; color: var(--text-muted); pointer-events: none; }
-
-    /* RADIO GROUPS */
     .radio-group { display: flex; flex-direction: column; gap: 0.6rem; }
     .radio-opt { display: flex; align-items: center; gap: 0.75rem; padding: 0.75rem 1rem; border: 1px solid var(--border); background: var(--warm-white); cursor: pointer; transition: all 0.15s; border-radius: 2px; }
     .radio-opt:hover { border-color: var(--gold); background: #FDF8F0; }
     .radio-opt input[type="radio"] { accent-color: var(--gold); width: 16px; height: 16px; cursor: pointer; flex-shrink: 0; }
-    .radio-opt input[type="radio"]:checked + .radio-label { color: var(--brown); }
     .radio-opt:has(input:checked) { border-color: var(--gold); background: #FDF8F0; }
     .radio-label { font-size: 0.9rem; color: var(--text-muted); flex: 1; }
-    .radio-price { font-size: 0.75rem; color: var(--gold); font-weight: 500; margin-left: auto; }
-
-    /* RESULT CARD */
+    .radio-price { font-size: 0.75rem; color: var(--gold); font-weight: 500; margin-left: auto; white-space: nowrap; }
     .result-card { position: sticky; top: 100px; }
     .result-main { background: var(--dark); color: white; padding: 2.5rem; margin-bottom: 1.5rem; }
     .result-main h3 { font-family: 'Playfair Display', serif; font-size: 1.1rem; color: rgba(255,255,255,0.5); font-weight: 400; margin-bottom: 0.25rem; }
@@ -85,25 +64,17 @@
     .breakdown-label { font-size: 0.8rem; color: rgba(255,255,255,0.4); }
     .breakdown-value { font-size: 0.8rem; color: rgba(255,255,255,0.7); font-weight: 500; }
     .breakdown-value.zero { color: rgba(255,255,255,0.2); }
-
-    /* SUMMARY BOX */
     .summary-box { background: white; border: 1px solid var(--border); padding: 1.5rem; margin-bottom: 1.5rem; }
     .summary-box h4 { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--text-muted); margin-bottom: 1rem; }
     .summary-item { display: flex; justify-content: space-between; font-size: 0.85rem; margin-bottom: 0.5rem; }
     .summary-item .key { color: var(--text-muted); font-weight: 300; }
     .summary-item .val { color: var(--text); font-weight: 500; }
     .summary-item .val.empty { color: var(--border); font-style: italic; font-weight: 300; }
-
-    /* WA BUTTON */
     .wa-btn { display: flex; align-items: center; justify-content: center; gap: 0.75rem; width: 100%; padding: 1rem 1.5rem; background: #25D366; color: white; font-family: 'DM Sans', sans-serif; font-size: 0.95rem; font-weight: 500; border: none; cursor: pointer; border-radius: 2px; transition: background 0.2s, transform 0.15s; text-decoration: none; }
-    .wa-btn:hover:not(:disabled) { background: #1ebe5d; transform: translateY(-1px); }
-    .wa-btn:disabled { background: #ccc; cursor: not-allowed; transform: none; }
+    .wa-btn:hover { background: #1ebe5d; transform: translateY(-1px); }
     .wa-icon { font-size: 1.2rem; }
     .wa-note { font-size: 0.75rem; color: var(--text-muted); text-align: center; margin-top: 0.75rem; font-weight: 300; }
-
-    /* PRICE TAG decorative */
     .price-tag { display: inline-flex; align-items: center; gap: 0.5rem; background: var(--gold); color: white; font-size: 0.7rem; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; padding: 0.3rem 0.75rem; margin-bottom: 1.5rem; }
-
     @media (max-width: 800px) {
       .main { grid-template-columns: 1fr; }
       .page-hero { padding: 5rem 1.5rem 3rem; }
@@ -113,45 +84,47 @@
   </style>
 </head>
 <body>
-
   <nav>
     <a href="index.html" class="nav-logo">Citra <span>Art</span> Frame</a>
-    <a href="index.html" class="nav-back">← Back to Home</a>
+    <div class="nav-right">
+      <a href="index.html" class="nav-back" data-i18n="nav.back">← Back to Home</a>
+      <div class="lang-toggle">
+        <button class="lang-btn active" onclick="setLang('en')">EN</button>
+        <div class="lang-divider"></div>
+        <button class="lang-btn" onclick="setLang('id')">ID</button>
+      </div>
+    </div>
   </nav>
 
   <div class="page-hero">
-    <div class="hero-tag">Price Estimator</div>
-    <h1>Get <em>Yours</em><br>Custom Frame</h1>
-    <p>Fill in your photo dimensions, pick your materials, and get an instant price estimate — then send it straight to us via WhatsApp.</p>
+    <div class="hero-tag" data-i18n="hero.tag">Price Estimator</div>
+    <h1 data-i18n="hero.title">Get <em>Yours</em><br>Custom Frame</h1>
+    <p data-i18n="hero.desc">Fill in your photo dimensions, pick your materials, and get an instant price estimate — then send it straight to us via WhatsApp.</p>
   </div>
 
   <div class="main">
-
-    <!-- LEFT: FORM -->
     <div class="form-card">
-      <div class="price-tag">📐 Live Calculator</div>
-      <h2>Configure Your Frame</h2>
-      <p class="subtitle">All prices are estimates in Indonesian Rupiah (IDR). Final price confirmed upon order.</p>
+      <div class="price-tag">📐 <span data-i18n="form.badge">Live Calculator</span></div>
+      <h2 data-i18n="form.title">Configure Your Frame</h2>
+      <p class="subtitle" data-i18n="form.subtitle">All prices are estimates in Indonesian Rupiah (IDR). Final price confirmed upon order.</p>
 
-      <!-- Name -->
       <div class="field">
-        <label>Your Name</label>
-        <input type="text" id="customerName" placeholder="e.g. Budi Santoso" oninput="calculate()" />
+        <label data-i18n="form.nameLabel">Your Name</label>
+        <input type="text" id="customerName" data-i18n-placeholder="form.namePlaceholder" placeholder="e.g. Budi Santoso" oninput="calculate()" />
       </div>
 
-      <!-- Size -->
       <div class="field">
-        <label>Photo Size (in centimeters)</label>
+        <label data-i18n="form.sizeLabel">Photo Size (in centimeters)</label>
         <div class="size-row">
           <div>
-            <div style="font-size:0.75rem; color:var(--text-muted); margin-bottom:0.35rem;">Horizontal (Width)</div>
+            <div class="size-sub-label" data-i18n="form.widthLabel">Horizontal (Width)</div>
             <div class="size-input-wrap">
               <input type="number" id="widthCm" placeholder="e.g. 30" min="0" step="0.1" oninput="calculate()" />
               <span class="size-unit">cm</span>
             </div>
           </div>
           <div>
-            <div style="font-size:0.75rem; color:var(--text-muted); margin-bottom:0.35rem;">Vertical (Height)</div>
+            <div class="size-sub-label" data-i18n="form.heightLabel">Vertical (Height)</div>
             <div class="size-input-wrap">
               <input type="number" id="heightCm" placeholder="e.g. 40" min="0" step="0.1" oninput="calculate()" />
               <span class="size-unit">cm</span>
@@ -160,202 +133,267 @@
         </div>
       </div>
 
-      <!-- Glass Type -->
       <div class="field">
-        <label>Glass Type</label>
+        <label data-i18n="form.glassLabel">Glass Type</label>
         <div class="radio-group">
           <label class="radio-opt">
             <input type="radio" name="glass" value="none" checked onchange="calculate()" />
-            <span class="radio-label">No Glass</span>
-            <span class="radio-price">Free</span>
+            <span class="radio-label" data-i18n="glass.none">No Glass</span>
+            <span class="radio-price" data-i18n="glass.none.price">Free</span>
           </label>
           <label class="radio-opt">
             <input type="radio" name="glass" value="clear" onchange="calculate()" />
-            <span class="radio-label">Clear Glass</span>
+            <span class="radio-label" data-i18n="glass.clear">Clear Glass</span>
             <span class="radio-price">Starting from Rp 150.000/m²</span>
           </label>
           <label class="radio-opt">
             <input type="radio" name="glass" value="doff" onchange="calculate()" />
-            <span class="radio-label">Doff Glass (Matte)</span>
+            <span class="radio-label" data-i18n="glass.doff">Doff Glass (Matte)</span>
             <span class="radio-price">Starting from Rp 200.000/m²</span>
           </label>
         </div>
       </div>
 
-      <!-- Frame Material -->
       <div class="field">
-        <label>Frame Material</label>
+        <label data-i18n="form.frameLabel">Frame Material</label>
         <div class="radio-group">
           <label class="radio-opt">
             <input type="radio" name="frame" value="fiber" checked onchange="calculate()" />
-            <span class="radio-label">Wooden Fiber Frame</span>
+            <span class="radio-label" data-i18n="frame.fiber">Wooden Fiber Frame</span>
             <span class="radio-price">Starting from Rp 35.000/m ~ 165.000/m</span>
           </label>
           <label class="radio-opt">
             <input type="radio" name="frame" value="wood" onchange="calculate()" />
-            <span class="radio-label">Wooden Frame</span>
+            <span class="radio-label" data-i18n="frame.wood">Wooden Frame</span>
             <span class="radio-price">Starting from Rp 75.000/m ~ 365.0000/m</span>
           </label>
           <label class="radio-opt">
             <input type="radio" name="frame" value="aluminium" onchange="calculate()" />
-            <span class="radio-label">Aluminium Frame</span>
+            <span class="radio-label" data-i18n="frame.aluminium">Aluminium Frame</span>
             <span class="radio-price">Starting from Rp 250.000/m ~ 650.000/m</span>
           </label>
         </div>
       </div>
     </div>
 
-    <!-- RIGHT: RESULT -->
     <div class="result-card">
-
-      <!-- Price Result -->
       <div class="result-main">
-        <h3>Your Estimate</h3>
+        <h3 data-i18n="result.title">Your Estimate</h3>
         <div class="result-name" id="resultName">—</div>
-        <div class="result-price-label">Estimated Total Price</div>
+        <div class="result-price-label" data-i18n="result.priceLabel">Estimated Total Price</div>
         <div class="result-price zero" id="resultPrice">Rp 0</div>
-        <div class="result-price-note">Starting from · excl. delivery</div>
+        <div class="result-price-note" data-i18n="result.priceNote">Starting from · excl. delivery</div>
         <div class="result-breakdown">
           <div class="breakdown-row">
-            <span class="breakdown-label">Frame cost</span>
+            <span class="breakdown-label" data-i18n="result.frameCost">Frame cost</span>
             <span class="breakdown-value zero" id="bFrame">Rp 0</span>
           </div>
           <div class="breakdown-row">
-            <span class="breakdown-label">Back cover</span>
+            <span class="breakdown-label" data-i18n="result.backCover">Back cover</span>
             <span class="breakdown-value zero" id="bBack">Rp 0</span>
           </div>
           <div class="breakdown-row">
-            <span class="breakdown-label">Front cover / Glass</span>
+            <span class="breakdown-label" data-i18n="result.frontCover">Front cover / Glass</span>
             <span class="breakdown-value zero" id="bGlass">Rp 0</span>
           </div>
         </div>
       </div>
 
-      <!-- Summary -->
       <div class="summary-box">
-        <h4>Order Summary</h4>
+        <h4 data-i18n="summary.title">Order Summary</h4>
         <div class="summary-item">
-          <span class="key">Customer</span>
-          <span class="val empty" id="sName">Not filled</span>
+          <span class="key" data-i18n="summary.customer">Customer</span>
+          <span class="val empty" id="sName" data-empty-i18n="summary.notFilled">Not filled</span>
         </div>
         <div class="summary-item">
-          <span class="key">Size</span>
+          <span class="key" data-i18n="summary.size">Size</span>
           <span class="val empty" id="sSize">— × — cm</span>
         </div>
         <div class="summary-item">
-          <span class="key">Glass</span>
+          <span class="key" data-i18n="summary.glass">Glass</span>
           <span class="val" id="sGlass">No Glass</span>
         </div>
         <div class="summary-item">
-          <span class="key">Frame</span>
+          <span class="key" data-i18n="summary.frame">Frame</span>
           <span class="val" id="sFrame">Wooden Fiber</span>
         </div>
       </div>
 
-      <!-- WhatsApp Button -->
       <a class="wa-btn" id="waBtn" href="#" target="_blank" rel="noopener noreferrer">
         <span class="wa-icon">💬</span>
-        <span>Send to WhatsApp</span>
+        <span data-i18n="wa.btn">Send to WhatsApp</span>
       </a>
-      <p class="wa-note">Your estimate details will be pre-filled in the message</p>
-
+      <p class="wa-note" data-i18n="wa.note">Your estimate details will be pre-filled in the message</p>
     </div>
   </div>
 
   <script>
-    // ── PRICE CONFIG ── edit these to change your prices ──
+    // ── PRICE CONFIG ──
     const PRICES = {
-      backCover: 85000,        // IDR per m² (fixed)
-      glass: {
-        none: 0,
-        clear: 150000,          // IDR per m²
-        doff: 200000,          // IDR per m²
+      backCover: 85000,
+      glass: { none: 0, clear: 150000, doff: 200000 },
+      frame: { fiber: 35000, wood: 75000, aluminium: 250000 }
+    };
+    const WA_NUMBER = '6287782913323'; // ← replace with your number
+
+    // ── TRANSLATIONS ──
+    const i18n = {
+      en: {
+        'nav.back': '← Back to Home',
+        'hero.tag': 'Price Estimator',
+        'hero.title': 'Get <em>Yours</em><br>Custom Frame',
+        'hero.desc': 'Fill in your photo dimensions, pick your materials, and get an instant price estimate — then send it straight to us via WhatsApp.',
+        'form.badge': 'Live Calculator',
+        'form.title': 'Configure Your Frame',
+        'form.subtitle': 'All prices are estimates in Indonesian Rupiah (IDR). Final price confirmed upon order.',
+        'form.nameLabel': 'Your Name',
+        'form.namePlaceholder': 'e.g. Budi Santoso',
+        'form.sizeLabel': 'Photo Size (in centimeters)',
+        'form.widthLabel': 'Horizontal (Width)',
+        'form.heightLabel': 'Vertical (Height)',
+        'form.glassLabel': 'Glass Type',
+        'form.frameLabel': 'Frame Material',
+        'glass.none': 'No Glass', 'glass.none.price': 'Free',
+        'glass.clear': 'Clear Glass', 'glass.doff': 'Doff Glass (Matte)',
+        'frame.fiber': 'Wooden Fiber Frame', 'frame.wood': 'Wooden Frame', 'frame.aluminium': 'Aluminium Frame',
+        'result.title': 'Your Estimate',
+        'result.priceLabel': 'Estimated Total Price',
+        'result.priceNote': 'Starting from · excl. delivery',
+        'result.frameCost': 'Frame cost',
+        'result.backCover': 'Back cover',
+        'result.frontCover': 'Front cover / Glass',
+        'summary.title': 'Order Summary',
+        'summary.customer': 'Customer', 'summary.notFilled': 'Not filled',
+        'summary.size': 'Size', 'summary.glass': 'Glass', 'summary.frame': 'Frame',
+        'wa.btn': 'Send to WhatsApp',
+        'wa.note': 'Your estimate details will be pre-filled in the message',
+        // labels used in JS
+        'js.forName': 'for',
+        'js.glass.none': 'No Glass', 'js.glass.clear': 'Clear Glass', 'js.glass.doff': 'Doff Glass (Matte)',
+        'js.frame.fiber': 'Wooden Fiber Frame', 'js.frame.wood': 'Wooden Frame', 'js.frame.aluminium': 'Aluminium Frame',
+        'js.summaryFiber': 'Wooden Fiber', 'js.summaryWood': 'Wooden', 'js.summaryAluminium': 'Aluminium',
+        'js.notFilled': 'Not filled',
+        'js.waMsg': (name, w, h, glass, frame, price) =>
+          `Hello Citra Art Frame, My name is ${name} and I see your estimation of my photo frame with the size ${w} cm long and ${h} cm wide, with ${glass}, and a ${frame} starting from ${price}.`,
       },
-      frame: {
-        fiber: 35000,          // IDR per meter
-        wood: 75000,           // IDR per meter
-        aluminium: 250000,      // IDR per meter
+      id: {
+        'nav.back': '← Kembali ke Beranda',
+        'hero.tag': 'Estimasi Harga',
+        'hero.title': 'Pesan <em>Bingkai</em><br>Custom Anda',
+        'hero.desc': 'Masukkan ukuran foto Anda, pilih material, dan dapatkan estimasi harga langsung — lalu kirim ke kami via WhatsApp.',
+        'form.badge': 'Kalkulator Langsung',
+        'form.title': 'Atur Bingkai Anda',
+        'form.subtitle': 'Semua harga merupakan estimasi dalam Rupiah (IDR). Harga final dikonfirmasi saat pemesanan.',
+        'form.nameLabel': 'Nama Anda',
+        'form.namePlaceholder': 'cth. Budi Santoso',
+        'form.sizeLabel': 'Ukuran Foto (dalam sentimeter)',
+        'form.widthLabel': 'Horizontal (Lebar)',
+        'form.heightLabel': 'Vertikal (Tinggi)',
+        'form.glassLabel': 'Jenis Kaca',
+        'form.frameLabel': 'Material Bingkai',
+        'glass.none': 'Tanpa Kaca', 'glass.none.price': 'Gratis',
+        'glass.clear': 'Kaca Bening', 'glass.doff': 'Kaca Doff (Matte)',
+        'frame.fiber': 'Bingkai Serat Kayu', 'frame.wood': 'Bingkai Kayu', 'frame.aluminium': 'Bingkai Aluminium',
+        'result.title': 'Estimasi Anda',
+        'result.priceLabel': 'Total Estimasi Harga',
+        'result.priceNote': 'Mulai dari · belum termasuk ongkir',
+        'result.frameCost': 'Biaya bingkai',
+        'result.backCover': 'Cover belakang',
+        'result.frontCover': 'Cover depan / Kaca',
+        'summary.title': 'Ringkasan Pesanan',
+        'summary.customer': 'Pelanggan', 'summary.notFilled': 'Belum diisi',
+        'summary.size': 'Ukuran', 'summary.glass': 'Kaca', 'summary.frame': 'Bingkai',
+        'wa.btn': 'Kirim via WhatsApp',
+        'wa.note': 'Detail estimasi akan otomatis terisi di pesan',
+        // labels used in JS
+        'js.forName': 'untuk',
+        'js.glass.none': 'Tanpa Kaca', 'js.glass.clear': 'Kaca Bening', 'js.glass.doff': 'Kaca Doff (Matte)',
+        'js.frame.fiber': 'Bingkai Serat Kayu', 'js.frame.wood': 'Bingkai Kayu', 'js.frame.aluminium': 'Bingkai Aluminium',
+        'js.summaryFiber': 'Serat Kayu', 'js.summaryWood': 'Kayu', 'js.summaryAluminium': 'Aluminium',
+        'js.notFilled': 'Belum diisi',
+        'js.waMsg': (name, w, h, glass, frame, price) =>
+          `Halo Citra Art Frame, nama saya ${name} dan saya melihat estimasi harga bingkai foto saya dengan ukuran ${w} cm lebar dan ${h} cm tinggi, dengan ${glass}, dan bingkai ${frame} mulai dari ${price}.`,
       }
     };
 
-    // ── YOUR WHATSAPP NUMBER ── replace with your actual number (no + or spaces) ──
-    const WA_NUMBER = '6287782913323';
+    let currentLang = 'en';
 
-    const FRAME_LABELS = { fiber: 'Wooden Fiber Frame', wood: 'Wooden Frame', aluminium: 'Aluminium Frame' };
-    const GLASS_LABELS = { none: 'No Glass', clear: 'Clear Glass', doff: 'Doff Glass (Matte)' };
+    function setLang(lang) {
+      currentLang = lang;
+      document.querySelectorAll('.lang-btn').forEach(b => b.classList.toggle('active', b.textContent.toLowerCase() === lang));
+      document.querySelectorAll('[data-i18n]').forEach(el => {
+        const key = el.getAttribute('data-i18n');
+        if (i18n[lang][key] !== undefined) el.innerHTML = i18n[lang][key];
+      });
+      // Update placeholders
+      document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
+        const key = el.getAttribute('data-i18n-placeholder');
+        if (i18n[lang][key]) el.placeholder = i18n[lang][key];
+      });
+      document.documentElement.lang = lang;
+      localStorage.setItem('caf-lang', lang);
+      calculate(); // refresh summary labels
+    }
 
     function fmt(val) {
       return 'Rp ' + Math.round(val).toLocaleString('id-ID');
     }
 
     function calculate() {
-      const name    = document.getElementById('customerName').value.trim();
-      const wRaw    = parseFloat(document.getElementById('widthCm').value);
-      const hRaw    = parseFloat(document.getElementById('heightCm').value);
-      const glass   = document.querySelector('input[name="glass"]:checked').value;
-      const frame   = document.querySelector('input[name="frame"]:checked').value;
+      const t = i18n[currentLang];
+      const name   = document.getElementById('customerName').value.trim();
+      const wRaw   = parseFloat(document.getElementById('widthCm').value);
+      const hRaw   = parseFloat(document.getElementById('heightCm').value);
+      const glass  = document.querySelector('input[name="glass"]:checked').value;
+      const frame  = document.querySelector('input[name="frame"]:checked').value;
 
-      // cm → m (treat NaN / 0 as 0)
       const w = (!isNaN(wRaw) && wRaw > 0) ? wRaw / 100 : 0;
       const h = (!isNaN(hRaw) && hRaw > 0) ? hRaw / 100 : 0;
-
-      // If either dimension is 0 → total = 0
       const valid = w > 0 && h > 0;
 
       let framePrice = 0, backPrice = 0, glassPrice = 0, total = 0;
-
       if (valid) {
-        const perimeter = (2 * w) + (2 * h) + 0.21;   // coefficient 0.21
+        const perimeter = (2 * w) + (2 * h) + 0.21;
         framePrice = perimeter * PRICES.frame[frame];
         backPrice  = w * h * PRICES.backCover;
         glassPrice = w * h * PRICES.glass[glass];
-        total      = framePrice + backPrice + glassPrice;
+        total = framePrice + backPrice + glassPrice;
       }
 
-      // ── UPDATE UI ──
       const priceEl = document.getElementById('resultPrice');
       priceEl.textContent = fmt(total);
       priceEl.classList.toggle('zero', total === 0);
 
-      document.getElementById('bFrame').textContent  = valid ? fmt(framePrice)  : 'Rp 0';
-      document.getElementById('bBack').textContent   = valid ? fmt(backPrice)   : 'Rp 0';
-      document.getElementById('bGlass').textContent  = valid ? fmt(glassPrice)  : 'Rp 0';
+      ['bFrame','bBack','bGlass'].forEach((id, i) => {
+        const vals = [framePrice, backPrice, glassPrice];
+        document.getElementById(id).textContent = valid ? fmt(vals[i]) : 'Rp 0';
+        document.getElementById(id).className = 'breakdown-value' + (valid ? '' : ' zero');
+      });
 
-      document.getElementById('bFrame').className  = 'breakdown-value' + (valid ? '' : ' zero');
-      document.getElementById('bBack').className   = 'breakdown-value' + (valid ? '' : ' zero');
-      document.getElementById('bGlass').className  = 'breakdown-value' + (valid ? '' : ' zero');
-
-      // Summary
       const nameEl = document.getElementById('sName');
       if (name) { nameEl.textContent = name; nameEl.className = 'val'; }
-      else       { nameEl.textContent = 'Not filled'; nameEl.className = 'val empty'; }
+      else { nameEl.textContent = t['js.notFilled']; nameEl.className = 'val empty'; }
 
       const sizeEl = document.getElementById('sSize');
       if (valid) { sizeEl.textContent = `${wRaw} × ${hRaw} cm`; sizeEl.className = 'val'; }
-      else       { sizeEl.textContent = '— × — cm'; sizeEl.className = 'val empty'; }
+      else { sizeEl.textContent = '— × — cm'; sizeEl.className = 'val empty'; }
 
-      document.getElementById('sGlass').textContent = GLASS_LABELS[glass];
-      document.getElementById('sFrame').textContent = FRAME_LABELS[frame];
+      document.getElementById('sGlass').textContent = t[`js.glass.${glass}`];
+      document.getElementById('sFrame').textContent = t[`js.summary${frame.charAt(0).toUpperCase()+frame.slice(1)}`];
+      document.getElementById('resultName').textContent = name ? `${t['js.forName']} ${name}` : '—';
 
-      // Name display in result card
-      document.getElementById('resultName').textContent = name ? `for ${name}` : '—';
-
-      // ── WHATSAPP LINK ──
-      const displayName  = name || '(name not filled)';
+      // WhatsApp message
+      const displayName  = name || t['js.notFilled'];
       const displayW     = (!isNaN(wRaw) && wRaw > 0) ? wRaw : '?';
       const displayH     = (!isNaN(hRaw) && hRaw > 0) ? hRaw : '?';
-      const displayGlass = GLASS_LABELS[glass];
-      const displayFrame = FRAME_LABELS[frame];
-      const displayPrice = fmt(total);
-
-      const msg = `Hello Citra Art Frame, My name is ${displayName} and I see your estimation of my photo frame with the size ${displayW} cm long and ${displayH} cm wide, with ${displayGlass}, and a ${displayFrame} starting from ${displayPrice}.`;
-
-      const waBtn = document.getElementById('waBtn');
-      waBtn.href = `https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(msg)}`;
+      const msg = t['js.waMsg'](displayName, displayW, displayH, t[`js.glass.${glass}`], t[`js.frame.${frame}`], fmt(total));
+      document.getElementById('waBtn').href = `https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(msg)}`;
     }
 
-    // run once on load
-    calculate();
+    // Load saved language preference
+    const saved = localStorage.getItem('caf-lang') || sessionStorage.getItem('caf-lang');
+    if (saved === 'id') setLang('id');
+    else calculate();
   </script>
 </body>
 </html>
