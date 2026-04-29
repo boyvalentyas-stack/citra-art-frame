@@ -1,6 +1,6 @@
 # 🔗 Citra Art Frame
 
-A personal web page built with HTML & CSS, hosted for free on GitHub Pages powered by Claude.AI tp help my Dad's business.
+A personal web page built with HTML & CSS, hosted for free on GitHub Pages powered by Claude.AI to help my Dad's business.
 
 🌐 **Live site:** [boyvalentyas-stack.github.io](https://boyvalentyas-stack.github.io/citra-art-frame)
 
