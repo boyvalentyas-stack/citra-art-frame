@@ -7,32 +7,26 @@
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
   <style>
     :root {
-      --cream: #F5F0E8;
-      --warm-white: #FDFAF5;
-      --gold: #C9A84C;
-      --gold-light: #E8C97A;
-      --dark: #1A1410;
-      --brown: #4A3728;
-      --brown-light: #7A5C48;
-      --text: #2C2018;
-      --text-muted: #8A7060;
-      --border: #E0D5C5;
+      --cream: #F5F0E8; --warm-white: #FDFAF5; --gold: #C9A84C;
+      --dark: #1A1410; --brown: #4A3728; --brown-light: #7A5C48;
+      --text: #2C2018; --text-muted: #8A7060; --border: #E0D5C5;
     }
     * { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; }
     body { background: var(--warm-white); font-family: 'DM Sans', sans-serif; color: var(--text); overflow-x: hidden; }
-
-    /* NAV */
     nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; padding: 1.25rem 2.5rem; display: flex; justify-content: space-between; align-items: center; background: rgba(253,250,245,0.92); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); }
     .nav-logo { font-family: 'Playfair Display', serif; font-size: 1.25rem; color: var(--brown); letter-spacing: 0.02em; }
     .nav-logo span { color: var(--gold); font-style: italic; }
+    .nav-right { display: flex; gap: 1.5rem; align-items: center; }
     .nav-links { display: flex; gap: 2rem; align-items: center; }
     .nav-links a { text-decoration: none; color: var(--text-muted); font-size: 0.875rem; font-weight: 500; letter-spacing: 0.04em; transition: color 0.2s; }
     .nav-links a:hover { color: var(--brown); }
-    .nav-cta { background: var(--gold); color: white !important; padding: 0.6rem 1.4rem; border-radius: 2px; font-weight: 500 !important; transition: background 0.2s !important; }
-    .nav-cta:hover { background: var(--brown) !important; color: white !important; }
-
-    /* HERO */
+    .nav-cta { background: var(--gold); color: white !important; padding: 0.6rem 1.4rem; border-radius: 2px; font-weight: 500 !important; transition: background 0.2s !important; text-decoration: none; }
+    .nav-cta:hover { background: var(--brown) !important; }
+    .lang-toggle { display: flex; align-items: center; background: var(--cream); border: 1px solid var(--border); border-radius: 2px; overflow: hidden; flex-shrink: 0; }
+    .lang-btn { padding: 0.35rem 0.7rem; font-size: 0.72rem; font-weight: 600; letter-spacing: 0.08em; cursor: pointer; border: none; background: transparent; color: var(--text-muted); transition: all 0.2s; font-family: 'DM Sans', sans-serif; }
+    .lang-btn.active { background: var(--brown); color: white; }
+    .lang-divider { width: 1px; height: 16px; background: var(--border); }
     .hero { min-height: 100vh; display: grid; grid-template-columns: 1fr 1fr; position: relative; padding-top: 70px; }
     .hero-left { display: flex; flex-direction: column; justify-content: center; padding: 5rem 3rem 5rem 5rem; background: var(--warm-white); position: relative; }
     .hero-left::after { content: ''; position: absolute; right: -1px; top: 10%; bottom: 10%; width: 1px; background: var(--border); }
@@ -54,15 +48,11 @@
     .hero-badge { position: absolute; bottom: 2.5rem; right: 2.5rem; background: white; border: 1px solid var(--border); border-radius: 50%; width: 100px; height: 100px; display: flex; flex-direction: column; align-items: center; justify-content: center; box-shadow: 0 4px 20px rgba(0,0,0,0.08); }
     .hero-badge span:first-child { font-family: 'Playfair Display', serif; font-size: 1.5rem; color: var(--gold); font-weight: 700; }
     .hero-badge span:last-child { font-size: 0.6rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--text-muted); text-align: center; }
-
-    /* SECTION COMMONS */
     section { padding: 6rem 5rem; }
     .section-tag { font-size: 0.7rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--gold); font-weight: 500; margin-bottom: 0.75rem; }
     .section-title { font-family: 'Playfair Display', serif; font-size: clamp(1.75rem, 3vw, 2.5rem); color: var(--dark); line-height: 1.2; margin-bottom: 1.25rem; }
     .section-title em { font-style: italic; color: var(--gold); }
     .divider { width: 3rem; height: 2px; background: var(--gold); margin-bottom: 2rem; }
-
-    /* ABOUT */
     .about { background: var(--warm-white); }
     .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center; }
     .about-visual { position: relative; }
@@ -74,8 +64,6 @@
     .about-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-top: 2rem; padding-top: 2rem; border-top: 1px solid var(--border); }
     .stat-num { font-family: 'Playfair Display', serif; font-size: 2rem; color: var(--brown); font-weight: 700; }
     .stat-label { font-size: 0.8rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.08em; margin-top: 2px; }
-
-    /* LOCATION */
     .location { background: var(--cream); }
     .location-grid { display: grid; grid-template-columns: 1fr 1.5fr; gap: 4rem; align-items: start; }
     .map-container { width: 100%; height: 360px; border: 1px solid var(--border); overflow: hidden; position: relative; }
@@ -86,8 +74,6 @@
     .address-card { background: white; border: 1px solid var(--border); padding: 1.5rem; border-left: 3px solid var(--gold); }
     .address-card p { font-size: 0.875rem; line-height: 1.7; color: var(--text-muted); margin: 0; }
     .address-card strong { color: var(--text); font-weight: 500; display: block; margin-bottom: 0.5rem; font-size: 0.95rem; }
-
-    /* CONTACT */
     .contact { background: var(--dark); color: white; }
     .contact .section-title { color: white; }
     .contact .divider { background: var(--gold); }
@@ -101,141 +87,118 @@
     .contact-value a:hover { color: var(--gold); }
     .contact-bottom { margin-top: 4rem; padding-top: 2rem; border-top: 1px solid rgba(255,255,255,0.08); display: flex; justify-content: space-between; align-items: center; }
     .contact-bottom p { font-size: 0.8rem; color: rgba(255,255,255,0.3); }
-
-    /* FOOTER */
     footer { background: #0F0C09; padding: 1.5rem 5rem; display: flex; justify-content: space-between; align-items: center; }
     footer p { font-size: 0.75rem; color: rgba(255,255,255,0.2); }
     footer a { font-size: 0.75rem; color: var(--gold); text-decoration: none; }
-
-    /* ANIMATIONS */
     .fade-up { opacity: 0; transform: translateY(30px); transition: opacity 0.7s ease, transform 0.7s ease; }
     .fade-up.visible { opacity: 1; transform: translateY(0); }
-
     @media (max-width: 900px) {
       .hero { grid-template-columns: 1fr; }
       .hero-right { min-height: 350px; }
       .hero-left { padding: 3rem 2rem; }
       section { padding: 4rem 1.5rem; }
       .about-grid, .location-grid, .contact-grid { grid-template-columns: 1fr; }
-      nav { padding: 1rem 1.5rem; }
+      nav { padding: 1rem 1.5rem; flex-wrap: wrap; gap: 0.75rem; }
       .nav-links { gap: 1rem; }
       footer { flex-direction: column; gap: 0.5rem; padding: 1.5rem; }
     }
   </style>
 </head>
 <body>
-
   <nav>
     <div class="nav-logo">Citra <span>Art</span> Frame</div>
-    <div class="nav-links">
-      <a href="#about">About</a>
-      <a href="#location">Location</a>
-      <a href="#contact">Contact</a>
-      <a href="get-yours.html" class="nav-cta">Get Yours →</a>
+    <div class="nav-right">
+      <div class="nav-links">
+        <a href="#about" data-i18n="nav.about">About</a>
+        <a href="#location" data-i18n="nav.location">Location</a>
+        <a href="#contact" data-i18n="nav.contact">Contact</a>
+        <a href="get-yours.html" class="nav-cta" data-i18n="nav.cta">Get Yours →</a>
+      </div>
+      <div class="lang-toggle">
+        <button class="lang-btn active" onclick="setLang('en')">EN</button>
+        <div class="lang-divider"></div>
+        <button class="lang-btn" onclick="setLang('id')">ID</button>
+      </div>
     </div>
   </nav>
 
-  <!-- HERO -->
   <div class="hero">
     <div class="hero-left">
-      <div class="hero-tag">Custom Photo Framing</div>
-      <h1 class="hero-title">Your Memories,<br><em>Beautifully</em><br>Preserved.</h1>
-      <p class="hero-desc">Handcrafted custom photo frames made to fit your exact dimensions — choose your material, glass, and let us bring your moments to life.</p>
+      <div class="hero-tag" data-i18n="hero.tag">Custom Photo Framing</div>
+      <h1 class="hero-title" data-i18n="hero.title">Your Memories,<br><em>Beautifully</em><br>Preserved.</h1>
+      <p class="hero-desc" data-i18n="hero.desc">Handcrafted custom photo frames made to fit your exact dimensions — choose your material, glass, and let us bring your moments to life.</p>
       <div class="hero-btns">
-        <a href="get-yours.html" class="btn-primary">Calculate Your Price</a>
-        <a href="#about" class="btn-outline">Learn More</a>
+        <a href="get-yours.html" class="btn-primary" data-i18n="hero.btn1">Calculate Your Price</a>
+        <a href="#about" class="btn-outline" data-i18n="hero.btn2">Learn More</a>
       </div>
     </div>
     <div class="hero-right">
       <div class="hero-frame-art">
         <div class="frame-outer"></div>
         <div class="frame-inner">
-          <div class="frame-text">"Every picture<br>tells a story<br>worth framing."</div>
+          <div class="frame-text" data-i18n="hero.quote">"Every picture<br>tells a story<br>worth framing."</div>
         </div>
       </div>
       <div class="hero-badge">
         <span>30+</span>
-        <span>Years of craft</span>
+        <span data-i18n="hero.badge">Years of craft</span>
       </div>
     </div>
   </div>
 
-  <!-- ABOUT -->
   <section class="about" id="about">
     <div class="about-grid">
       <div class="about-visual fade-up">
-        <div class="about-img-placeholder">
-          <div class="about-img-icon">🖼️</div>
-        </div>
-        <div class="about-accent">"Crafting frames since 1993"</div>
+        <div class="about-img-placeholder"><div class="about-img-icon">🖼️</div></div>
+        <div class="about-accent" data-i18n="about.accent">"Crafting frames since 2014"</div>
       </div>
       <div class="about-text fade-up">
-        <div class="section-tag">About Us</div>
-        <h2 class="section-title">We Frame <em>Moments</em><br>That Matter</h2>
+        <div class="section-tag" data-i18n="about.tag">About Us</div>
+        <h2 class="section-title" data-i18n="about.title">We Frame <em>Moments</em><br>That Matter</h2>
         <div class="divider"></div>
-        <p>Citra Art Frame was born from a passion for preserving life's most precious moments. Based in Jakarta Indonesia, we specialize in handcrafted custom photo frames tailored to your exact specifications.</p>
-        <p>Whether it's a wedding portrait, a family milestone, company project, or a piece of art — we believe every image deserves a frame as unique as the story behind it. We offer a range of materials, glass options, and sizes to fit any need and budget.</p>
-        <p>Each frame is measured, cut, and assembled with care — no mass production, no shortcuts. Just quality craftsmanship delivered with pride.</p>
+        <p data-i18n="about.p1">Citra Art Frame was born from a passion for preserving life's most precious moments. Based in Indonesia, we specialize in handcrafted custom photo frames tailored to your exact specifications.</p>
+        <p data-i18n="about.p2">Whether it's a wedding portrait, a family milestone, or a piece of art — we believe every image deserves a frame as unique as the story behind it. We offer a range of materials, glass options, and sizes to fit any need and budget.</p>
+        <p data-i18n="about.p3">Each frame is measured, cut, and assembled with care — no mass production, no shortcuts. Just quality craftsmanship delivered with pride.</p>
         <div class="about-stats">
-          <div>
-            <div class="stat-num">1,000,000+</div>
-            <div class="stat-label">Frames crafted</div>
-          </div>
-          <div>
-            <div class="stat-num">30+</div>
-            <div class="stat-label">Years experience</div>
-          </div>
-          <div>
-            <div class="stat-num">3</div>
-            <div class="stat-label">Frame materials</div>
-          </div>
-          <div>
-            <div class="stat-num">100%</div>
-            <div class="stat-label">Custom made</div>
-          </div>
+          <div><div class="stat-num">1,000,000+</div><div class="stat-label" data-i18n="about.stat1">Frames crafted</div></div>
+          <div><div class="stat-num">30+</div><div class="stat-label" data-i18n="about.stat2">Years experience</div></div>
+          <div><div class="stat-num">3</div><div class="stat-label" data-i18n="about.stat3">Frame materials</div></div>
+          <div><div class="stat-num">100%</div><div class="stat-label" data-i18n="about.stat4">Custom made</div></div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- LOCATION -->
   <section class="location" id="location">
     <div class="location-grid">
       <div class="location-info fade-up">
-        <div class="section-tag">Find Us</div>
-        <h2 class="section-title">Visit Our <em>Workshop</em></h2>
+        <div class="section-tag" data-i18n="location.tag">Find Us</div>
+        <h2 class="section-title" data-i18n="location.title">Visit Our <em>Workshop</em></h2>
         <div class="divider"></div>
-        <p>We welcome walk-ins and consultations at our workshop. Come see our material samples, discuss your project, and get a live quote. We're open Monday to Saturday.</p>
+        <p data-i18n="location.desc">We welcome walk-ins and consultations at our workshop. Come see our material samples, discuss your project, and get a live quote. We're open Monday to Saturday.</p>
         <div class="address-card">
-          <strong>📍 Citra Art Frame</strong>
-          <p>
-            Jl. Balap Sepeda No. 14, Kelurahan Rawamangun<br>
+          <strong>📍 Citra Art Frame Workshop</strong>
+          <p data-i18n="location.address">Jl. Balap Sepeda Raya No. 14, Kelurahan Rawamangun<br>
             Kecamatan Pulogadung, Kota Jakarta Timur<br>
             DKI Jakarta, Indonesia, 13220<br><br>
-            Phone – (021) 4756820<br>
-            Whatsapp – +62 812 1962 6998<br><br>
+            Phone: (021) 4756820<br>
+            WhatsApp: +62 877 8291 3323<br><br>
             🕐 Mon – Sat: 09.00 – 17.30 WIB<br>
-            ☀️ Sunday and National Holiday : Closed
-          </p>
+            ☀️ Sunday & Public Holiday: Closed</p>
         </div>
       </div>
       <div class="fade-up">
         <div class="map-container">
-          <!-- Replace the src below with your actual Google Maps embed URL -->
-          <!-- Go to maps.google.com → search your location → Share → Embed a map → copy the src URL -->
-          <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d340.6165097827464!2d106.89106957648556!3d-6.190113103699718!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e69f4c2293711c9%3A0xecc184968a19da9c!2sCitra%20Art!5e0!3m2!1sen!2sid!4v1777431262206!5m2!1sen!2sid" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-          <a class="map-overlay-btn" href="https://maps.google.com/?q=Jakarta" target="_blank" rel="noopener noreferrer">
-            📍 Open in Google Maps
-          </a>
+          <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15866.385890835738!2d106.8917786004639!3d-6.184724002636502!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e69f4c2293711c9%3A0xecc184968a19da9c!2sCitra%20Art!5e0!3m2!1sen!2sid!4v1777436891463!5m2!1sen!2sid" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+          <a class="map-overlay-btn" href="https://maps.google.com/?q=Jakarta" target="_blank" rel="noopener noreferrer" data-i18n="location.mapBtn">📍 Open in Google Maps</a>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- CONTACT -->
   <section class="contact" id="contact">
-    <div class="section-tag">Get In Touch</div>
-    <h2 class="section-title">Let's Talk <em>Frames</em></h2>
+    <div class="section-tag" data-i18n="contact.tag">Get In Touch</div>
+    <h2 class="section-title" data-i18n="contact.title">Let's Talk <em>Frames</em></h2>
     <div class="divider"></div>
     <div class="contact-grid">
       <div class="contact-card fade-up">
@@ -243,7 +206,7 @@
         <div class="contact-label">WhatsApp</div>
         <div class="contact-value">
           <a href="https://wa.me/6287782913323" target="_blank" rel="noopener noreferrer">+62 877-8291-3323</a><br>
-          <small style="font-size:0.75rem; opacity:0.5;">Chat us anytime</small>
+          <small style="font-size:0.75rem;opacity:0.5;" data-i18n="contact.waNote">Chat us anytime</small>
         </div>
       </div>
       <div class="contact-card fade-up">
@@ -251,7 +214,7 @@
         <div class="contact-label">Email</div>
         <div class="contact-value">
           <a href="mailto:dev.boyvalentyas@gmail.com">dev.boyvalentyas@gmail.com</a><br>
-          <small style="font-size:0.75rem; opacity:0.5;">We reply as soon as possible</small>
+          <small style="font-size:0.75rem;opacity:0.5;" data-i18n="contact.emailNote">We reply as soon as possible</small>
         </div>
       </div>
       <div class="contact-card fade-up">
@@ -259,23 +222,87 @@
         <div class="contact-label">Instagram</div>
         <div class="contact-value">
           <a href="https://instagram.com/aceblanc.toujo" target="_blank" rel="noopener noreferrer">@aceblanc.toujo</a><br>
-          <small style="font-size:0.75rem; opacity:0.5;">See our latest work</small>
+          <small style="font-size:0.75rem;opacity:0.5;" data-i18n="contact.igNote">See our latest work</small>
         </div>
       </div>
     </div>
     <div class="contact-bottom">
-      <p>© 2024 Citra Art Frame. All rights reserved.</p>
-      <a href="get-yours.html" style="color: var(--gold); font-size:0.85rem;">Get your custom frame →</a>
+      <p data-i18n="contact.copy">© 1993 Citra Art Frame. All rights reserved.</p>
+      <a href="get-yours.html" style="color:var(--gold);font-size:0.85rem;" data-i18n="contact.cta">Get your custom frame →</a>
     </div>
   </section>
 
   <footer>
-    <p>Built with ❤️ and hosted on GitHub Pages powered by Claude.AI</p>
-    <a href="get-yours.html">Price Calculator →</a>
+    <p data-i18n="footer.built">Built with ❤️ from Son, hosted on GitHub Pages powered by Claude.AI</p>
+    <a href="get-yours.html" data-i18n="footer.link">Price Calculator →</a>
   </footer>
 
   <script>
-    const observer = new IntersectionObserver((entries) => {
+    const i18n = {
+      en: {
+        'nav.about':'About','nav.location':'Location','nav.contact':'Contact','nav.cta':'Get Yours →',
+        'hero.tag':'Custom Photo Framing',
+        'hero.title':'Your Memories,<br><em>Beautifully</em><br>Preserved.',
+        'hero.desc':'Handcrafted custom photo frames made to fit your exact dimensions — choose your material, glass, and let us bring your moments to life.',
+        'hero.btn1':'Calculate Your Price','hero.btn2':'Learn More',
+        'hero.quote':'"Every picture<br>tells a story<br>worth framing."',
+        'hero.badge':'Years of craft',
+        'about.tag':'About Us','about.title':'We Frame <em>Moments</em><br>That Matter',
+        'about.accent':'"Crafting frames since 1993"',
+        'about.p1':"Citra Art Frame was born from a passion for preserving life's most precious moments. Based in Jakarta Indonesia, we specialize in handcrafted custom photo frames tailored to your exact specifications.",
+        'about.p2':"Whether it's a wedding portrait, a family milestone, or a piece of art — we believe every image deserves a frame as unique as the story behind it. We offer a range of materials, glass options, and sizes to fit any need and budget.",
+        'about.p3':'Each frame is measured, cut, and assembled with care — no mass production, no shortcuts. Just quality craftsmanship delivered with pride.',
+        'about.stat1':'Frames crafted','about.stat2':'Years experience','about.stat3':'Frame materials','about.stat4':'Custom made',
+        'location.tag':'Find Us','location.title':'Visit Our <em>Workshop</em>',
+        'location.desc':"We welcome walk-ins and consultations at our workshop. Come see our material samples, discuss your project, and get a live quote. We're open Monday to Saturday.",
+        'location.address':'Jl. Balap Sepeda Raya No. 14, Keluarahan Rawamangun<br>Kecamatan Pulo Gadung, Kota Jakarta Timur<br>DKI Jakarta, Indonesia, 13220<br><br>Phone: (021) 4756820<br>WhatsApp: +62 877 8291 3323<br><br>🕐 Mon – Sat: 09.00 – 17.30 WIB<br>☀️ Sunday: Closed',
+        'location.mapBtn':'📍 Open in Google Maps',
+        'contact.tag':'Get In Touch','contact.title':"Let's Talk <em>Frames</em>",
+        'contact.waNote':'Chat us anytime','contact.emailNote':'We reply as soon as possible','contact.igNote':'See our latest work',
+        'contact.copy':'© 1993 Citra Art Frame. All rights reserved.','contact.cta':'Get your custom frame →',
+        'footer.built':'Built with ❤️ from Son and hosted on GitHub Pages powered by Claude.AI','footer.link':'Price Calculator →',
+      },
+      id: {
+        'nav.about':'Tentang Kami','nav.location':'Lokasi','nav.contact':'Kontak','nav.cta':'Pesan Sekarang →',
+        'hero.tag':'Bingkai Foto Custom',
+        'hero.title':'Kenangan Anda,<br><em>Diabadikan</em><br>dengan Indah.',
+        'hero.desc':'Bingkai foto custom buatan tangan sesuai ukuran Anda — pilih material, kaca, dan biarkan kami menghadirkan momen berharga Anda.',
+        'hero.btn1':'Hitung Estimasi Harga','hero.btn2':'Pelajari Lebih Lanjut',
+        'hero.quote':'"Setiap gambar<br>menyimpan cerita<br>yang layak dibingkai."',
+        'hero.badge':'Tahun pengalaman',
+        'about.tag':'Tentang Kami','about.title':'Kami Membingkai <em>Momen</em><br>yang Berarti',
+        'about.accent':'"Membuat bingkai sejak 1993"',
+        'about.p1':'Citra Art Frame lahir dari kecintaan kami dalam mengabadikan momen-momen paling berharga dalam hidup. Berbasis di Jakarta Indonesia, kami mengkhususkan diri dalam pembuatan bingkai foto custom buatan tangan sesuai spesifikasi Anda.',
+        'about.p2':'Baik itu potret pernikahan, momen keluarga, maupun karya seni — kami percaya setiap gambar layak mendapat bingkai yang seistimewa cerita di baliknya. Kami menyediakan berbagai pilihan material, kaca, dan ukuran untuk semua kebutuhan dan anggaran.',
+        'about.p3':'Setiap bingkai diukur, dipotong, dan dirakit dengan penuh perhatian — tanpa produksi massal, tanpa jalan pintas. Hanya kualitas kerajinan tangan yang kami banggakan.',
+        'about.stat1':'Bingkai dibuat','about.stat2':'Tahun pengalaman','about.stat3':'Jenis material','about.stat4':'Dibuat custom',
+        'location.tag':'Temukan Kami','location.title':'Kunjungi <em>Workshop</em> Kami',
+        'location.desc':'Kami menerima kunjungan langsung dan konsultasi di workshop kami. Lihat langsung contoh material, diskusikan proyek Anda, dan dapatkan estimasi harga. Buka Senin hingga Sabtu.',
+        'location.address':'Jl. Balap Sepeda Raya No. 14, Keluarahan Rawamangun<br>Kecamatan Pulo Gadung, Kota Jakarta Timur<br>DKI Jakarta, Indonesia, 13220<br><br>Telepon: (021) 4756820<br>WhatsApp: +62 877 8291 3323<br><br>🕐 Sen – Sab: 09.00 – 17.30 WIB<br>☀️ Minggu: Tutup',
+        'location.mapBtn':'📍 Buka di Google Maps',
+        'contact.tag':'Hubungi Kami','contact.title':'Mari Bicara <em>Bingkai</em>',
+        'contact.waNote':'Chat kapan saja','contact.emailNote':'Kami akan membalas secepatnya','contact.igNote':'Lihat karya terbaru kami',
+        'contact.copy':'© 1993 Citra Art Frame. Semua hak dilindungi.','contact.cta':'Pesan bingkai custom Anda →',
+        'footer.built':'Dibuat dengan ❤️ dari sang anak dan dihosting di GitHub Pages didukung oleh Claude.AI','footer.link':'Kalkulator Harga →',
+      }
+    };
+
+    function setLang(lang) {
+      document.querySelectorAll('.lang-btn').forEach(b => b.classList.toggle('active', b.textContent.toLowerCase() === lang));
+      document.querySelectorAll('[data-i18n]').forEach(el => {
+        const key = el.getAttribute('data-i18n');
+        if (i18n[lang][key] !== undefined) el.innerHTML = i18n[lang][key];
+      });
+      document.documentElement.lang = lang;
+      localStorage.setItem('caf-lang', lang);
+      // sync get-yours page lang preference
+      sessionStorage.setItem('caf-lang', lang);
+    }
+
+    const saved = localStorage.getItem('caf-lang');
+    if (saved === 'id') setLang('id');
+
+    const observer = new IntersectionObserver(entries => {
       entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
     }, { threshold: 0.15 });
     document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
