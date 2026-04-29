@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Citra Art Frame – Custom Photo Frames</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+  <style>
+    :root {
+      --cream: #F5F0E8;
+      --warm-white: #FDFAF5;
+      --gold: #C9A84C;
+      --gold-light: #E8C97A;
+      --dark: #1A1410;
+      --brown: #4A3728;
+      --brown-light: #7A5C48;
+      --text: #2C2018;
+      --text-muted: #8A7060;
+      --border: #E0D5C5;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { background: var(--warm-white); font-family: 'DM Sans', sans-serif; color: var(--text); overflow-x: hidden; }
+
+    /* NAV */
+    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; padding: 1.25rem 2.5rem; display: flex; justify-content: space-between; align-items: center; background: rgba(253,250,245,0.92); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); }
+    .nav-logo { font-family: 'Playfair Display', serif; font-size: 1.25rem; color: var(--brown); letter-spacing: 0.02em; }
+    .nav-logo span { color: var(--gold); font-style: italic; }
+    .nav-links { display: flex; gap: 2rem; align-items: center; }
+    .nav-links a { text-decoration: none; color: var(--text-muted); font-size: 0.875rem; font-weight: 500; letter-spacing: 0.04em; transition: color 0.2s; }
+    .nav-links a:hover { color: var(--brown); }
+    .nav-cta { background: var(--gold); color: white !important; padding: 0.6rem 1.4rem; border-radius: 2px; font-weight: 500 !important; transition: background 0.2s !important; }
+    .nav-cta:hover { background: var(--brown) !important; color: white !important; }
+
+    /* HERO */
+    .hero { min-height: 100vh; display: grid; grid-template-columns: 1fr 1fr; position: relative; padding-top: 70px; }
+    .hero-left { display: flex; flex-direction: column; justify-content: center; padding: 5rem 3rem 5rem 5rem; background: var(--warm-white); position: relative; }
+    .hero-left::after { content: ''; position: absolute; right: -1px; top: 10%; bottom: 10%; width: 1px; background: var(--border); }
+    .hero-tag { font-size: 0.75rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--gold); font-weight: 500; margin-bottom: 1.5rem; display: flex; align-items: center; gap: 0.75rem; }
+    .hero-tag::before { content: ''; width: 2rem; height: 1px; background: var(--gold); }
+    .hero-title { font-family: 'Playfair Display', serif; font-size: clamp(2.5rem, 4vw, 3.75rem); line-height: 1.12; color: var(--dark); margin-bottom: 1.5rem; }
+    .hero-title em { color: var(--gold); font-style: italic; }
+    .hero-desc { font-size: 1rem; line-height: 1.7; color: var(--text-muted); max-width: 400px; margin-bottom: 2.5rem; font-weight: 300; }
+    .hero-btns { display: flex; gap: 1rem; flex-wrap: wrap; }
+    .btn-primary { background: var(--brown); color: white; padding: 0.875rem 2rem; text-decoration: none; font-size: 0.875rem; font-weight: 500; letter-spacing: 0.05em; border-radius: 2px; transition: background 0.2s; }
+    .btn-primary:hover { background: var(--dark); }
+    .btn-outline { border: 1px solid var(--border); color: var(--brown); padding: 0.875rem 2rem; text-decoration: none; font-size: 0.875rem; font-weight: 500; letter-spacing: 0.05em; border-radius: 2px; transition: all 0.2s; }
+    .btn-outline:hover { border-color: var(--brown); background: var(--cream); }
+    .hero-right { background: var(--cream); display: flex; align-items: center; justify-content: center; position: relative; overflow: hidden; }
+    .hero-frame-art { width: 320px; height: 380px; position: relative; }
+    .frame-outer { position: absolute; inset: 0; border: 12px solid var(--brown); border-radius: 2px; box-shadow: 8px 8px 0 var(--gold), 16px 16px 0 rgba(201,168,76,0.2); }
+    .frame-inner { position: absolute; inset: 24px; border: 2px solid var(--gold); display: flex; align-items: center; justify-content: center; background: linear-gradient(135deg, #e8ddd0 0%, #d4c4b0 100%); }
+    .frame-text { font-family: 'Playfair Display', serif; font-size: 1.1rem; color: var(--brown); text-align: center; line-height: 1.6; font-style: italic; padding: 1rem; }
+    .hero-badge { position: absolute; bottom: 2.5rem; right: 2.5rem; background: white; border: 1px solid var(--border); border-radius: 50%; width: 100px; height: 100px; display: flex; flex-direction: column; align-items: center; justify-content: center; box-shadow: 0 4px 20px rgba(0,0,0,0.08); }
+    .hero-badge span:first-child { font-family: 'Playfair Display', serif; font-size: 1.5rem; color: var(--gold); font-weight: 700; }
+    .hero-badge span:last-child { font-size: 0.6rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--text-muted); text-align: center; }
+
+    /* SECTION COMMONS */
+    section { padding: 6rem 5rem; }
+    .section-tag { font-size: 0.7rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--gold); font-weight: 500; margin-bottom: 0.75rem; }
+    .section-title { font-family: 'Playfair Display', serif; font-size: clamp(1.75rem, 3vw, 2.5rem); color: var(--dark); line-height: 1.2; margin-bottom: 1.25rem; }
+    .section-title em { font-style: italic; color: var(--gold); }
+    .divider { width: 3rem; height: 2px; background: var(--gold); margin-bottom: 2rem; }
+
+    /* ABOUT */
+    .about { background: var(--warm-white); }
+    .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center; }
+    .about-visual { position: relative; }
+    .about-img-placeholder { width: 100%; aspect-ratio: 4/5; background: var(--cream); border: 1px solid var(--border); display: flex; align-items: center; justify-content: center; position: relative; overflow: hidden; }
+    .about-img-placeholder::before { content: ''; position: absolute; inset: 16px; border: 1px solid var(--gold); opacity: 0.5; }
+    .about-img-icon { font-size: 4rem; opacity: 0.3; }
+    .about-accent { position: absolute; bottom: -1.5rem; right: -1.5rem; background: var(--gold); color: white; padding: 1.25rem 1.5rem; font-family: 'Playfair Display', serif; font-size: 0.95rem; line-height: 1.4; font-style: italic; max-width: 180px; }
+    .about-text p { font-size: 0.975rem; line-height: 1.8; color: var(--text-muted); margin-bottom: 1.25rem; font-weight: 300; }
+    .about-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-top: 2rem; padding-top: 2rem; border-top: 1px solid var(--border); }
+    .stat-num { font-family: 'Playfair Display', serif; font-size: 2rem; color: var(--brown); font-weight: 700; }
+    .stat-label { font-size: 0.8rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.08em; margin-top: 2px; }
+
+    /* LOCATION */
+    .location { background: var(--cream); }
+    .location-grid { display: grid; grid-template-columns: 1fr 1.5fr; gap: 4rem; align-items: start; }
+    .map-container { width: 100%; height: 360px; border: 1px solid var(--border); overflow: hidden; position: relative; }
+    .map-container iframe { width: 100%; height: 100%; border: none; }
+    .map-overlay-btn { position: absolute; bottom: 1rem; right: 1rem; background: var(--brown); color: white; padding: 0.6rem 1.2rem; font-size: 0.8rem; font-weight: 500; text-decoration: none; border-radius: 2px; display: flex; align-items: center; gap: 0.5rem; transition: background 0.2s; }
+    .map-overlay-btn:hover { background: var(--dark); }
+    .location-info p { font-size: 0.95rem; line-height: 1.7; color: var(--text-muted); font-weight: 300; margin-bottom: 2rem; }
+    .address-card { background: white; border: 1px solid var(--border); padding: 1.5rem; border-left: 3px solid var(--gold); }
+    .address-card p { font-size: 0.875rem; line-height: 1.7; color: var(--text-muted); margin: 0; }
+    .address-card strong { color: var(--text); font-weight: 500; display: block; margin-bottom: 0.5rem; font-size: 0.95rem; }
+
+    /* CONTACT */
+    .contact { background: var(--dark); color: white; }
+    .contact .section-title { color: white; }
+    .contact .divider { background: var(--gold); }
+    .contact-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; margin-top: 3rem; }
+    .contact-card { border: 1px solid rgba(255,255,255,0.1); padding: 2rem; transition: border-color 0.2s, transform 0.2s; }
+    .contact-card:hover { border-color: var(--gold); transform: translateY(-4px); }
+    .contact-icon { font-size: 1.75rem; margin-bottom: 1rem; }
+    .contact-label { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.12em; color: var(--gold); margin-bottom: 0.5rem; }
+    .contact-value { font-size: 0.95rem; color: rgba(255,255,255,0.8); line-height: 1.5; font-weight: 300; }
+    .contact-value a { color: rgba(255,255,255,0.8); text-decoration: none; }
+    .contact-value a:hover { color: var(--gold); }
+    .contact-bottom { margin-top: 4rem; padding-top: 2rem; border-top: 1px solid rgba(255,255,255,0.08); display: flex; justify-content: space-between; align-items: center; }
+    .contact-bottom p { font-size: 0.8rem; color: rgba(255,255,255,0.3); }
+
+    /* FOOTER */
+    footer { background: #0F0C09; padding: 1.5rem 5rem; display: flex; justify-content: space-between; align-items: center; }
+    footer p { font-size: 0.75rem; color: rgba(255,255,255,0.2); }
+    footer a { font-size: 0.75rem; color: var(--gold); text-decoration: none; }
+
+    /* ANIMATIONS */
+    .fade-up { opacity: 0; transform: translateY(30px); transition: opacity 0.7s ease, transform 0.7s ease; }
+    .fade-up.visible { opacity: 1; transform: translateY(0); }
+
+    @media (max-width: 900px) {
+      .hero { grid-template-columns: 1fr; }
+      .hero-right { min-height: 350px; }
+      .hero-left { padding: 3rem 2rem; }
+      section { padding: 4rem 1.5rem; }
+      .about-grid, .location-grid, .contact-grid { grid-template-columns: 1fr; }
+      nav { padding: 1rem 1.5rem; }
+      .nav-links { gap: 1rem; }
+      footer { flex-direction: column; gap: 0.5rem; padding: 1.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <div class="nav-logo">Citra <span>Art</span> Frame</div>
+    <div class="nav-links">
+      <a href="#about">About</a>
+      <a href="#location">Location</a>
+      <a href="#contact">Contact</a>
+      <a href="get-yours.html" class="nav-cta">Get Yours →</a>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <div class="hero">
+    <div class="hero-left">
+      <div class="hero-tag">Custom Photo Framing</div>
+      <h1 class="hero-title">Your Memories,<br><em>Beautifully</em><br>Preserved.</h1>
+      <p class="hero-desc">Handcrafted custom photo frames made to fit your exact dimensions — choose your material, glass, and let us bring your moments to life.</p>
+      <div class="hero-btns">
+        <a href="get-yours.html" class="btn-primary">Calculate Your Price</a>
+        <a href="#about" class="btn-outline">Learn More</a>
+      </div>
+    </div>
+    <div class="hero-right">
+      <div class="hero-frame-art">
+        <div class="frame-outer"></div>
+        <div class="frame-inner">
+          <div class="frame-text">"Every picture<br>tells a story<br>worth framing."</div>
+        </div>
+      </div>
+      <div class="hero-badge">
+        <span>30+</span>
+        <span>Years of craft</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ABOUT -->
+  <section class="about" id="about">
+    <div class="about-grid">
+      <div class="about-visual fade-up">
+        <div class="about-img-placeholder">
+          <div class="about-img-icon">🖼️</div>
+        </div>
+        <div class="about-accent">"Crafting frames since 1993"</div>
+      </div>
+      <div class="about-text fade-up">
+        <div class="section-tag">About Us</div>
+        <h2 class="section-title">We Frame <em>Moments</em><br>That Matter</h2>
+        <div class="divider"></div>
+        <p>Citra Art Frame was born from a passion for preserving life's most precious moments. Based in Jakarta Indonesia, we specialize in handcrafted custom photo frames tailored to your exact specifications.</p>
+        <p>Whether it's a wedding portrait, a family milestone, company project, or a piece of art — we believe every image deserves a frame as unique as the story behind it. We offer a range of materials, glass options, and sizes to fit any need and budget.</p>
+        <p>Each frame is measured, cut, and assembled with care — no mass production, no shortcuts. Just quality craftsmanship delivered with pride.</p>
+        <div class="about-stats">
+          <div>
+            <div class="stat-num">1,000,000+</div>
+            <div class="stat-label">Frames crafted</div>
+          </div>
+          <div>
+            <div class="stat-num">30+</div>
+            <div class="stat-label">Years experience</div>
+          </div>
+          <div>
+            <div class="stat-num">3</div>
+            <div class="stat-label">Frame materials</div>
+          </div>
+          <div>
+            <div class="stat-num">100%</div>
+            <div class="stat-label">Custom made</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- LOCATION -->
+  <section class="location" id="location">
+    <div class="location-grid">
+      <div class="location-info fade-up">
+        <div class="section-tag">Find Us</div>
+        <h2 class="section-title">Visit Our <em>Workshop</em></h2>
+        <div class="divider"></div>
+        <p>We welcome walk-ins and consultations at our workshop. Come see our material samples, discuss your project, and get a live quote. We're open Monday to Saturday.</p>
+        <div class="address-card">
+          <strong>📍 Citra Art Frame</strong>
+          <p>
+            Jl. Balap Sepeda No. 14, Kelurahan Rawamangun<br>
+            Kecamatan Pulogadung, Kota Jakarta Timur<br>
+            DKI Jakarta, Indonesia, 13220<br><br>
+            🕐 Mon – Sat: 09.00 – 17.30 WIB<br>
+            ☀️ Sunday and National Holiday : Closed
+          </p>
+        </div>
+      </div>
+      <div class="fade-up">
+        <div class="map-container">
+          <!-- Replace the src below with your actual Google Maps embed URL -->
+          <!-- Go to maps.google.com → search your location → Share → Embed a map → copy the src URL -->
+          <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d340.6165097827464!2d106.89106957648556!3d-6.190113103699718!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e69f4c2293711c9%3A0xecc184968a19da9c!2sCitra%20Art!5e0!3m2!1sen!2sid!4v1777431262206!5m2!1sen!2sid" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+          <a class="map-overlay-btn" href="https://maps.google.com/?q=Jakarta" target="_blank" rel="noopener noreferrer">
+            📍 Open in Google Maps
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section class="contact" id="contact">
+    <div class="section-tag">Get In Touch</div>
+    <h2 class="section-title">Let's Talk <em>Frames</em></h2>
+    <div class="divider"></div>
+    <div class="contact-grid">
+      <div class="contact-card fade-up">
+        <div class="contact-icon">📱</div>
+        <div class="contact-label">WhatsApp</div>
+        <div class="contact-value">
+          <a href="https://wa.me/6289636306541" target="_blank" rel="noopener noreferrer">+62 896-3630-6541</a><br>
+          <small style="font-size:0.75rem; opacity:0.5;">Chat us anytime</small>
+        </div>
+      </div>
+      <div class="contact-card fade-up">
+        <div class="contact-icon">📧</div>
+        <div class="contact-label">Email</div>
+        <div class="contact-value">
+          <a href="mailto:dev.boyvalentyas@gmail.com">dev.boyvalentyas@gmail.com</a><br>
+          <small style="font-size:0.75rem; opacity:0.5;">We reply as soon as possible</small>
+        </div>
+      </div>
+      <div class="contact-card fade-up">
+        <div class="contact-icon">📸</div>
+        <div class="contact-label">Instagram</div>
+        <div class="contact-value">
+          <a href="https://instagram.com/aceblanc.toujo" target="_blank" rel="noopener noreferrer">@aceblanc.toujo</a><br>
+          <small style="font-size:0.75rem; opacity:0.5;">See our latest work</small>
+        </div>
+      </div>
+    </div>
+    <div class="contact-bottom">
+      <p>© 2024 Citra Art Frame. All rights reserved.</p>
+      <a href="get-yours.html" style="color: var(--gold); font-size:0.85rem;">Get your custom frame →</a>
+    </div>
+  </section>
+
+  <footer>
+    <p>Built with ❤️ and hosted on GitHub Pages powered by Claude.AI</p>
+    <a href="get-yours.html">Price Calculator →</a>
+  </footer>
+
+  <script>
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+    }, { threshold: 0.15 });
+    document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+  </script>
+</body>
+</html>
