@@ -146,14 +146,14 @@
           <div>
             <div style="font-size:0.75rem; color:var(--text-muted); margin-bottom:0.35rem;">Horizontal (Width)</div>
             <div class="size-input-wrap">
-              <input type="number" id="widthCm" placeholder="e.g. 25,4" min="0" step="0.1" oninput="calculate()" />
+              <input type="number" id="widthCm" placeholder="e.g. 30" min="0" step="0.1" oninput="calculate()" />
               <span class="size-unit">cm</span>
             </div>
           </div>
           <div>
             <div style="font-size:0.75rem; color:var(--text-muted); margin-bottom:0.35rem;">Vertical (Height)</div>
             <div class="size-input-wrap">
-              <input type="number" id="heightCm" placeholder="e.g. 30,5" min="0" step="0.1" oninput="calculate()" />
+              <input type="number" id="heightCm" placeholder="e.g. 40" min="0" step="0.1" oninput="calculate()" />
               <span class="size-unit">cm</span>
             </div>
           </div>
@@ -172,12 +172,12 @@
           <label class="radio-opt">
             <input type="radio" name="glass" value="clear" onchange="calculate()" />
             <span class="radio-label">Clear Glass</span>
-            <span class="radio-price">Starting from Rp 80.000/m²</span>
+            <span class="radio-price">Starting from Rp 150.000/m²</span>
           </label>
           <label class="radio-opt">
             <input type="radio" name="glass" value="doff" onchange="calculate()" />
             <span class="radio-label">Doff Glass (Matte)</span>
-            <span class="radio-price">Starting from Rp 120.000/m²</span>
+            <span class="radio-price">Starting from Rp 200.000/m²</span>
           </label>
         </div>
       </div>
@@ -189,17 +189,17 @@
           <label class="radio-opt">
             <input type="radio" name="frame" value="fiber" checked onchange="calculate()" />
             <span class="radio-label">Wooden Fiber Frame</span>
-            <span class="radio-price">Starting from Rp 35.000/m</span>
+            <span class="radio-price">Starting from Rp 35.000/m ~ 165.000/m</span>
           </label>
           <label class="radio-opt">
             <input type="radio" name="frame" value="wood" onchange="calculate()" />
             <span class="radio-label">Wooden Frame</span>
-            <span class="radio-price">Starting from Rp 75.000/m</span>
+            <span class="radio-price">Starting from Rp 75.000/m ~ 365.0000/m</span>
           </label>
           <label class="radio-opt">
             <input type="radio" name="frame" value="aluminium" onchange="calculate()" />
             <span class="radio-label">Aluminium Frame</span>
-            <span class="radio-price">Starting from Rp 55.000/m</span>
+            <span class="radio-price">Starting from Rp 250.000/m ~ 650.000/m</span>
           </label>
         </div>
       </div>
@@ -265,21 +265,21 @@
   <script>
     // ── PRICE CONFIG ── edit these to change your prices ──
     const PRICES = {
-      backCover: 45000,        // IDR per m² (fixed)
+      backCover: 85000,        // IDR per m² (fixed)
       glass: {
         none: 0,
-        clear: 80000,          // IDR per m²
-        doff: 120000,          // IDR per m²
+        clear: 150000,          // IDR per m²
+        doff: 200000,          // IDR per m²
       },
       frame: {
         fiber: 35000,          // IDR per meter
         wood: 75000,           // IDR per meter
-        aluminium: 55000,      // IDR per meter
+        aluminium: 250000,      // IDR per meter
       }
     };
 
     // ── YOUR WHATSAPP NUMBER ── replace with your actual number (no + or spaces) ──
-    const WA_NUMBER = '6289636306541';
+    const WA_NUMBER = '6281219626998';
 
     const FRAME_LABELS = { fiber: 'Wooden Fiber Frame', wood: 'Wooden Frame', aluminium: 'Aluminium Frame' };
     const GLASS_LABELS = { none: 'No Glass', clear: 'Clear Glass', doff: 'Doff Glass (Matte)' };
