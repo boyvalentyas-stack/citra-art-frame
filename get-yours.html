@@ -75,11 +75,81 @@
     .wa-icon { font-size: 1.2rem; }
     .wa-note { font-size: 0.75rem; color: var(--text-muted); text-align: center; margin-top: 0.75rem; font-weight: 300; }
     .price-tag { display: inline-flex; align-items: center; gap: 0.5rem; background: var(--gold); color: white; font-size: 0.7rem; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; padding: 0.3rem 0.75rem; margin-bottom: 1.5rem; }
+    /* ── TABLET (max 800px) ── */
     @media (max-width: 800px) {
-      .main { grid-template-columns: 1fr; }
-      .page-hero { padding: 5rem 1.5rem 3rem; }
-      .result-card { position: static; }
       nav { padding: 1rem 1.5rem; }
+      .page-hero { padding: 5.5rem 2rem 3rem; }
+      .main { grid-template-columns: 1fr; padding: 2rem 1.5rem 4rem; gap: 1.5rem; }
+      .result-card { position: static; }
+      .form-card { padding: 2rem; }
+    }
+
+    /* ── MOBILE (max 600px) ── */
+    @media (max-width: 600px) {
+      /* Nav */
+      nav {
+        padding: 0.75rem 1rem;
+        flex-wrap: nowrap;
+        gap: 0;
+      }
+      .nav-logo { font-size: 1rem; }
+      .nav-right { gap: 0.6rem; flex-shrink: 0; }
+      .nav-back {
+        font-size: 0.75rem;
+        white-space: nowrap;
+        overflow: hidden;
+        max-width: 80px;
+      }
+      .lang-btn { padding: 0.3rem 0.55rem; font-size: 0.68rem; }
+
+      /* Hero */
+      .page-hero { padding: 4.75rem 1.25rem 2.25rem; }
+      .hero-tag { font-size: 0.65rem; margin-bottom: 0.75rem; }
+      .page-hero h1 { font-size: 1.75rem; margin-bottom: 0.5rem; }
+      .page-hero p { font-size: 0.85rem; line-height: 1.55; }
+
+      /* Main grid → single column, tighter padding */
+      .main { padding: 1.25rem 1rem 3rem; gap: 1.25rem; }
+
+      /* Form card */
+      .form-card { padding: 1.25rem 1rem; }
+      .form-card h2 { font-size: 1.15rem; }
+      .form-card .subtitle { font-size: 0.8rem; margin-bottom: 1.5rem; }
+      .price-tag { font-size: 0.65rem; padding: 0.25rem 0.6rem; margin-bottom: 1rem; }
+
+      /* Fields */
+      .field { margin-bottom: 1.25rem; }
+      .field label { font-size: 0.72rem; }
+      .field input[type="text"],
+      .field input[type="number"] { font-size: 0.875rem; padding: 0.7rem 0.875rem; }
+
+      /* Size inputs side by side — keep them but smaller */
+      .size-row { gap: 0.75rem; }
+      .size-sub-label { font-size: 0.7rem; }
+
+      /* Radio options — tighten up */
+      .radio-opt { padding: 0.6rem 0.75rem; gap: 0.5rem; }
+      .radio-label { font-size: 0.82rem; }
+      .radio-price { font-size: 0.68rem; }
+      .radio-opt input[type="radio"] { width: 14px; height: 14px; }
+
+      /* Result card */
+      .result-main { padding: 1.25rem; margin-bottom: 1rem; }
+      .result-main h3 { font-size: 0.95rem; }
+      .result-name { font-size: 0.78rem; margin-bottom: 1.25rem; }
+      .result-price { font-size: 1.65rem; }
+      .result-price-note { font-size: 0.7rem; margin-bottom: 1.25rem; }
+      .breakdown-label,
+      .breakdown-value { font-size: 0.75rem; }
+
+      /* Summary box */
+      .summary-box { padding: 1rem; margin-bottom: 1rem; }
+      .summary-box h4 { font-size: 0.7rem; margin-bottom: 0.75rem; }
+      .summary-item { font-size: 0.8rem; }
+
+      /* WhatsApp button */
+      .wa-btn { font-size: 0.875rem; padding: 0.875rem 1rem; }
+      .wa-note { font-size: 0.7rem; }
     }
   </style>
 </head>
