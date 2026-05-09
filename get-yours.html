@@ -3,7 +3,18 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Get Yours – Citra Art Frame</title>
+  <title>Get Yours – Citra Art Frame | Custom Frame Price Estimator</title>
+  <meta name="description" content="Calculate the price of your custom photo frame instantly. Choose size, glass type, and frame material. Order via WhatsApp — Citra Art Frame, Jakarta." />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://boyvalentyas-stack.github.io/citra-art-frame/get-yours.html" />
+  <meta property="og:title" content="Get Yours – Citra Art Frame | Custom Frame Price Estimator" />
+  <meta property="og:description" content="Calculate your custom photo frame price instantly. Choose size, glass, and material. Order via WhatsApp." />
+  <meta property="og:url" content="https://boyvalentyas-stack.github.io/citra-art-frame/get-yours.html" />
+  <meta property="og:type" content="website" />
+  <!-- Bug fix: favicon was missing from get-yours.html -->
+  <link rel="icon" type="image/x-icon" href="citra-art-favicon.ico" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
   <style>
     :root {
@@ -180,7 +191,7 @@
 
       <div class="field">
         <label data-i18n="form.nameLabel">Your Name</label>
-        <input type="text" id="customerName" data-i18n-placeholder="form.namePlaceholder" placeholder="e.g. Budi Santoso" oninput="calculate()" />
+        <input type="text" id="customerName" data-i18n-placeholder="form.namePlaceholder" placeholder="e.g. Budi Santoso" oninput="calculate()" autocomplete="given-name" />
       </div>
 
       <div class="field">
@@ -235,7 +246,7 @@
           <label class="radio-opt">
             <input type="radio" name="frame" value="wood" onchange="calculate()" />
             <span class="radio-label" data-i18n="frame.wood">Wooden Frame</span>
-            <span class="radio-price">Starting from Rp 75.000/m ~ 365.0000/m</span>
+            <span class="radio-price">Starting from Rp 75.000/m ~ 365.000/m</span>
           </label>
           <label class="radio-opt">
             <input type="radio" name="frame" value="aluminium" onchange="calculate()" />
@@ -289,7 +300,7 @@
         </div>
       </div>
 
-      <a class="wa-btn" id="waBtn" href="#" target="_blank" rel="noopener noreferrer">
+      <a class="wa-btn" id="waBtn" href="#" target="_blank" rel="noopener noreferrer" title="Send your estimate to Citra Art Frame on WhatsApp">
         <span class="wa-icon">💬</span>
         <span data-i18n="wa.btn">Send to WhatsApp</span>
       </a>
@@ -460,7 +471,6 @@
       document.getElementById('waBtn').href = `https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(msg)}`;
     }
 
-    // Load saved language preference
     const saved = localStorage.getItem('caf-lang') || sessionStorage.getItem('caf-lang');
     if (saved === 'id') setLang('id');
     else calculate();
